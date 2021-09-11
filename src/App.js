@@ -1,7 +1,8 @@
 // import logo from './logo.svg';
 // import './App.css';
+import About from './components/About';
 import Navbar from './components/Navbar'
-import TextForms from './components/TextForms'
+// import TextForms from './components/TextForms'
 
 
 
@@ -14,7 +15,8 @@ function App() {
     {/* <Navbar/>  */}
     {/* class = className and for = htmlFor */}
      <div className="container mb-3">
-       <TextForms heading ="Tell your story "/>
+       {/* <TextForms heading ="Tell your story "/> */}
+       <About/>
      </div>
   </>
   );
