@@ -8,14 +8,14 @@ export default function TextForms(props) {
   const copy = ()=> {
     // using js for use the selection funcion
     // console.log('I am a copy');
-    // let text = document.getElementById('myBox')
-    // text.select()
-    // text.setSelectionRange(0, 9999);
-    // navigator.clipboard.writeText(text.value)
+    let text = document.getElementById('myBox')
+    text.select()
+    text.setSelectionRange(0, 9999);
+    navigator.clipboard.writeText(text.value)
     
     
     //one line code
-    navigator.clipboard.writeText(text)
+    // navigator.clipboard.writeText(text)
   };
   const extraSpace = ()=>{
     let newText = text.split(/[ ]+/);
@@ -45,18 +45,20 @@ export default function TextForms(props) {
   <div className="container">
     <h1>{props.heading}</h1>
     <div className="mb-3">
-      <textarea className="form-control text-white bg-dark bg-gradient" value={text} onChange={handleOnChange} id="myBox" rows="8"></textarea>
-      <button className="btn btn-outline-dark fs-4 m-2" onClick={handleUpClick}>
+      <textarea className="form-control" value={text} style={{
+        backgroundColor: props.mode==='dark'?'black':'#c6cfd5', color: props.mode==='dark'?'white':'black'
+      }} onChange={handleOnChange} id="myBox" rows="8"></textarea>
+      <button className={`btn btn-outline-${props.mode==='light'?'dark':'light'} fw-bold m-2`} onClick={handleUpClick}>
         Convert To UPPERCASE!
       </button>
-      <button className="btn btn-outline-dark fw-bold m-2" onClick={handleLwrClick}>
+      <button className={`btn btn-outline-${props.mode==='light'?'dark':'light'} fw-bold m-2 `} onClick={handleLwrClick}>
         Convert To lowercase!
       </button>
-      <button className="btn btn-outline-dark fw-bold m-2 " onClick={copy}>
-      <i class="fa fa-clone fa-2x"><p className="fs-6 my-0">clone</p></i>
+      <button className={`btn btn-outline-${props.mode==='light'?'dark':'light'} fw-bold m-2 `} onClick={copy}>
+      <i className="fa fa-clone fa-2x"><p className="fs-6 my-0">clone</p></i>
       </button>
-      <button className="btn btn-outline-dark fw-bold m-2 " onClick={extraSpace}>
-      <i class="fa fa-close"><p className="fs-6 my-0">remove space</p></i>
+      <button className={`btn btn-outline-${props.mode==='light'?'dark':'light'} fw-bold m-2 `}  onClick={extraSpace}>
+      <i className="fa fa-close"><p className="fs-6 my-0">remove space</p></i>
       </button>
       <button className="btn btn-danger m-2" onClick={clear}>
         Clear
