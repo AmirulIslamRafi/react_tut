@@ -3,8 +3,17 @@ import PropTypes from "prop-types";
 
 export default function TextForms(props) {
   const clear = ()=> {
-    setText("")
+    
+    if (text === "") {
+      props.showAlert("Nothing to clear","danger")
+    }
+    else{
+      props.showAlert("Deleted","success")
+      setText("")
+    }
   };
+  
+
   const copy = ()=> {
     // using js for use the selection funcion
     // console.log('I am a copy');
@@ -12,6 +21,7 @@ export default function TextForms(props) {
     text.select()
     text.setSelectionRange(0, 9999);
     navigator.clipboard.writeText(text.value)
+    props.showAlert("Copied","success")
     
     
     //one line code
@@ -20,17 +30,20 @@ export default function TextForms(props) {
   const extraSpace = ()=>{
     let newText = text.split(/[ ]+/);
     setText(newText.join(" "))
+    props.showAlert("Extra Space are Removed","success")
   }
 
   const handleUpClick = ()=> {
     // let up = text.toUpperCase();
     setText(text.toUpperCase())
+    props.showAlert("Changed To Uppercase","success")
   };
   const handleLwrClick = ()=> {
     // let upperCase = text.toLowerCase();
     setText(text.toLowerCase());
     // console.log('Button is clicked' + " " + text);
     // setText("It's your story"+" '"+text +"'");
+    props.showAlert("Changed To Lowercase","success")
   };
   const handleOnChange = (event) => {
     // console.log('Text area just changed');
